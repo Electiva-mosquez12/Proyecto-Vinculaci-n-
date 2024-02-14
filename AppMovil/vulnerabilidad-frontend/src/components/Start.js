@@ -21,7 +21,8 @@ const Start = () => {
     minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-between',  // Set to 'space-between'
     padding: '16px',
     boxSizing: 'border-box',
   };
@@ -30,7 +31,10 @@ const Start = () => {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: '32px',
+    padding: '16px',
+    backgroundColor: 'white',
+    borderRadius: '8px',
+    width: '100%',  // Set width to 100%
   };
 
   const buttonStyle = {
@@ -47,7 +51,7 @@ const Start = () => {
   return (
     <Grid container style={containerStyle}>
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2} style={{ margin: 'auto' }}>
-        <form onSubmit={handleSubmit} style={formStyle}>
+        <div style={formStyle}>
           <Typography variant="h5" component="h2" align="center">
             Sign In
           </Typography>
@@ -67,8 +71,10 @@ const Start = () => {
               Regístrate
             </strong>
           </Typography>
-        </form>
+        </div>
       </Grid>
+      {/* This div acts as a container and will be at the bottom */}
+      <div></div>
     </Grid>
   );
 };

@@ -1,102 +1,76 @@
 import React from 'react';
-import { Button, TextField, Grid, Typography, Link, Paper } from '@material-ui/core';
+import { Button, Grid, Typography } from '@material-ui/core';
 import { LockOpen } from '@material-ui/icons';
 import { useNavigate } from 'react-router-dom';
 
-const SignIn = () => {
+import backgroundImage from '../image/vulnerabilidad.jpg';
+
+const Start = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission logic here
-    navigate('/dashboard');
+    navigate('/SignIn');
   };
 
   const containerStyle = {
-    background: '#001f3f', // Set a darker blue background color
-    height: '100vh',
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    minHeight: '100vh',
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    justifyContent: 'flex-end', // Align at the bottom
+    padding: '16px',
+    boxSizing: 'border-box',
+  };
+
+  const formStyle = {
+    display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
-  };
-
-  const paperStyle = {
-    padding: '20px',
-    width: '80%', // Make the container smaller
-    maxWidth: '400px',
-    background: 'white',
-    border: '2px solid #001f3f', // Add a border with the same color as the background
-  };
-
-  const fieldStyle = {
-    marginTop: '16px',
+    marginBottom: '32px', // Space between the content and the bottom
   };
 
   const buttonStyle = {
-    marginTop: '24px',
+    marginTop: '16px',
   };
 
   const linkStyle = {
     textDecoration: 'none',
-    color: '#001f3f', // Set link color to match the background
+    color: 'blue',
     cursor: 'pointer',
+    marginLeft: '8px',
   };
 
   return (
     <Grid container style={containerStyle}>
-      <Paper elevation={3} style={paperStyle}>
-        <Grid container direction="column" alignItems="center" spacing={2}>
-          <Grid item>
-            <Typography variant="h5" component="h2">
-              Bienvenido
-            </Typography>
-          </Grid>
-          <Grid item>
-            <form onSubmit={handleSubmit}>
-              <TextField
-                label="Email"
-                type="email"
-                variant="outlined"
-                fullWidth
-                margin="dense"
-                required
-                style={fieldStyle}
-              />
-              <Typography variant="body2" component="p">
-                <Link style={linkStyle} onClick={() => navigate('/forgot-username')}>
-                  Forgot your username?
-                </Link>
-              </Typography>
-              <TextField
-                label="Password"
-                type="password"
-                variant="outlined"
-                fullWidth
-                margin="dense"
-                required
-                style={fieldStyle}
-              />
-              <Typography variant="body2" component="p">
-                <Link style={linkStyle} onClick={() => navigate('/forgot-password')}>
-                  Forgot your password?
-                </Link>
-              </Typography>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                startIcon={<LockOpen />}
-                fullWidth
-                style={buttonStyle}
-              >
-                Iniciar Sesión
-              </Button>
-            </form>
-          </Grid>
-        </Grid>
-      </Paper>
+      <Grid item xs={12} sm={6} md={4} lg={3} xl={2} style={{ margin: 'auto' }}>
+        <form onSubmit={handleSubmit} style={formStyle}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            startIcon={<LockOpen />}
+            fullWidth
+            style={buttonStyle}
+          >
+            Iniciar Sesión
+          </Button>
+          <Typography variant="h5" component="h2" align="center">
+            Sign In
+          </Typography>
+          <Typography variant="body2" component="p" align="center">
+            No tienes una cuenta?{' '}
+            <strong style={linkStyle} onClick={() => navigate('/register')}>
+              Regístrate
+            </strong>
+          </Typography>
+        </form>
+      </Grid>
     </Grid>
   );
 };
 
-export default SignIn;
+export default Start;
